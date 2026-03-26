@@ -36,3 +36,18 @@ impl Executor {
         self.pose
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_output() {
+        println!("Hello, Smart Car! Current pose is: {:?}", Pose::default());
+        let a = 1;
+        let b = 2;
+        dbg!("a: {}, b: {}", a, b);
+        dbg!("for test");
+        assert_eq!(a + b, 3);
+    }
+}
