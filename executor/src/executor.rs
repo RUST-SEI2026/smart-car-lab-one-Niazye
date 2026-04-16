@@ -58,7 +58,13 @@ impl Executor {
     }
     
     pub fn execute(&mut self, cmds: &str) {
-        
+        for cmd in cmds.chars() {
+            match cmd {
+                'M' => self.move_step(),
+                'R' | 'L' => self.turn(cmd),
+                _ => (),
+            }
+        }
     }
 
     pub fn query(&self) -> Pose {
