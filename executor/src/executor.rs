@@ -30,6 +30,16 @@ impl Executor {
         Executor { pose }
     }
 
+    fn move_step(&mut self) {
+        match self.pose.heading {
+            'N' => self.pose.y += 1,
+            'S' => self.pose.y -= 1,
+            'E' => self.pose.x += 1,
+            'W' => self.pose.x -= 1,
+            _ => (),
+        };
+    }
+    
     pub fn execute(&mut self, cmds: &str) {
         
     }
