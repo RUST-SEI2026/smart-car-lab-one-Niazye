@@ -26,3 +26,30 @@ mod initial_test {
         assert_eq!(executor.query(), expect_pose);
     }
 }
+mod move_test {
+    #[test]
+    fn expect_3_0_E_from_0_0_E_move3() {
+        let input_pos = super::Pose::new(0, 0, 'E');
+        let mut executor = super::Executor::create_with_pose(input_pos);
+        let cmd_str = "M".repeat(3);
+        executor.execute(&cmd_str);
+        let expect_pose = super::Pose::new(3, 0, 'E');
+        assert_eq!(executor.query(), expect_pose);
+    }
+    fn expect_n5_n5_S_from_5_10_S_move5() {
+        let input_pos = super::Pose::new(5, 10, 'S');
+        let mut executor = super::Executor::create_with_pose(input_pos);
+        let cmd_str = "M".repeat(5);
+        executor.execute(&cmd_str);
+        let expect_pose = super::Pose::new(5, 5, 'S');
+        assert_eq!(executor.query(), expect_pose);
+    }
+    fn expect_n13_0_W_from_0_0_W_move13() {
+        let input_pos = super::Pose::new(0, 0, 'W');
+        let mut executor = super::Executor::create_with_pose(input_pos);
+        let cmd_str = "M".repeat(13);
+        executor.execute(&cmd_str);
+        let expect_pose = super::Pose::new(-13, 0, 'W');
+        assert_eq!(executor.query(), expect_pose);
+    }
+}
