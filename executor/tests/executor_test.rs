@@ -1,14 +1,20 @@
+use executor::{Pose, Executor};
+
+#[cfg(test)]
 mod initial_test {
+    #[test]
     fn expect_0_0_N() {
         let expect_pose = super::Pose::new(0, 0, 'N');
         let executor = super::Executor::create_with_pose(expect_pose);
         assert_eq!(executor.query(), expect_pose);
     }
+    #[test]
     fn expect_114514_n114514_E() {
         let expect_pose = super::Pose::new(114514, -114514, 'E');
         let executor = super::Executor::create_with_pose(expect_pose);
         assert_eq!(executor.query(), expect_pose);
     }
+    #[test]
     fn expect_n325325_799799_S() {
         let expect_pose = super::Pose::new(-325325, 799799, 'S');
         let executor = super::Executor::create_with_pose(expect_pose);
@@ -20,12 +26,15 @@ mod initial_test {
         let executor = super::Executor::create_with_pose(expect_pose);
         assert_eq!(executor.query(), expect_pose);
     }
+    #[test]
     fn default_expect_0_0_N() {
         let expect_pose = super::Pose::default();
         let executor = super::Executor::create_with_pose(expect_pose);
         assert_eq!(executor.query(), expect_pose);
     }
 }
+
+#[cfg(test)]
 mod move_test {
     #[test]
     fn expect_3_0_E_from_0_0_E_move3() {
@@ -36,6 +45,7 @@ mod move_test {
         let expect_pose = super::Pose::new(3, 0, 'E');
         assert_eq!(executor.query(), expect_pose);
     }
+    #[test]
     fn expect_n5_n5_S_from_5_10_S_move5() {
         let input_pos = super::Pose::new(5, 10, 'S');
         let mut executor = super::Executor::create_with_pose(input_pos);
@@ -44,6 +54,7 @@ mod move_test {
         let expect_pose = super::Pose::new(5, 5, 'S');
         assert_eq!(executor.query(), expect_pose);
     }
+    #[test]
     fn expect_n13_0_W_from_0_0_W_move13() {
         let input_pos = super::Pose::new(0, 0, 'W');
         let mut executor = super::Executor::create_with_pose(input_pos);
@@ -53,6 +64,8 @@ mod move_test {
         assert_eq!(executor.query(), expect_pose);
     }
 }
+
+#[cfg(test)]
 mod turn_test {
     #[test]
     fn expect_S_from_N_turn_R14() {
@@ -63,6 +76,7 @@ mod turn_test {
         let expect_pose = super::Pose::new(0, 0, 'S');
         assert_eq!(executor.query(), expect_pose);
     }
+    #[test]
     fn expect_E_from_N_turn_L3() {
         let input_pos = super::Pose::new(0, 0, 'N');
         let mut executor = super::Executor::create_with_pose(input_pos);
@@ -71,6 +85,7 @@ mod turn_test {
         let expect_pose = super::Pose::new(0, 0, 'E');
         assert_eq!(executor.query(), expect_pose);
     }
+    #[test]
     fn expect_N_from_N_turn_RLRLRL10() {
         let input_pos = super::Pose::new(0, 0, 'N');
         let mut executor = super::Executor::create_with_pose(input_pos);
@@ -80,6 +95,8 @@ mod turn_test {
         assert_eq!(executor.query(), expect_pose);
     }
 }
+
+#[cfg(test)]
 mod turn_and_move_test {
     #[test]
     fn expect_4_0_S_from_0_0_N() {
@@ -90,6 +107,7 @@ mod turn_and_move_test {
         let expect_pose = super::Pose::new(4, 0, 'S');
         assert_eq!(executor.query(), expect_pose);
     }
+    #[test]
     fn expect_0_0_N_from_0_0_N() {
         let input_pos = super::Pose::new(0, 0, 'N');
         let mut executor = super::Executor::create_with_pose(input_pos);
