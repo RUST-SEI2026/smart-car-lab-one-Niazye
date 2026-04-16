@@ -26,11 +26,13 @@ pub struct Executor {
 }
 
 impl Executor {
-    pub fn with_pose(pose: Pose) -> Self {
+    pub fn create_with_pose(pose: Pose) -> Self {
         Executor { pose }
     }
 
-    pub fn execute(&mut self, cmds: &str) {}
+    pub fn execute(&mut self, cmds: &str) {
+        
+    }
 
     pub fn query(&self) -> Pose {
         self.pose
