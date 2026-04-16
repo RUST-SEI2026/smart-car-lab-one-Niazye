@@ -40,6 +40,23 @@ impl Executor {
         };
     }
     
+    fn turn(&mut self, direction: char) {
+        let headings = ['N', 'E', 'S', 'W'];
+        let idx = match self.pose.heading {
+            'N' => 0,
+            'E' => 1,
+            'S' => 2,
+            'W' => 3,
+            _ => 0,
+        };
+        let new_idx = match direction {
+            'R' => (idx + 1) % 4,
+            'L' => (idx + 3) % 4,
+            _ => 0,
+        };
+        self.pose.heading = headings[new_idx];
+    }
+    
     pub fn execute(&mut self, cmds: &str) {
         
     }
