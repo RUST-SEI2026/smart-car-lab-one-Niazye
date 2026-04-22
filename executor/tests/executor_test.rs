@@ -116,4 +116,32 @@ mod turn_and_move_test {
         let expect_pose = super::Pose::new(0, 0, 'N');
         assert_eq!(executor.query(), expect_pose);
     }
+    #[test]
+    fn circuit_movement_expect_3_5_E() {
+        let input_pos = super::Pose::new(3, 5, 'E');
+        let mut executor = super::Executor::create_with_pose(input_pos);
+        let cmd_str = "MRMLMRM".repeat(16);
+        executor.execute(&cmd_str);
+        let expect_pose = super::Pose::new(3, 5, 'E');
+        assert_eq!(executor.query(), expect_pose);
+    }
+    #[test]
+    fn empty_command_expect_original_pose() {
+        let cmd_str = "";
+        {
+            let input_pos = super::Pose::new(123456, -654321, 'S');
+            let mut executor = super::Executor::create_with_pose(input_pos);
+            executor.execute(&cmd_str);
+            let expect_pose = super::Pose::new(123456, -654321, 'S');
+            assert_eq!(executor.query(), expect_pose);
+        }
+        {
+            let input_pos = super::Pose::new(0, 0, 'N');
+            let mut executor = super::Executor::create_with_pose(input_pos);
+            let cmd_str = "";
+            executor.execute(&cmd_str);
+            let expect_pose = super::Pose::new(0, 0, 'N');
+            assert_eq!(executor.query(), expect_pose);
+        }
+    }
 }
